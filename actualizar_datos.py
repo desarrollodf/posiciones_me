@@ -11,6 +11,19 @@ import os
 user = os.environ["BCCH_USER"]
 pw = os.environ["BCCH_PASSWORD"]
 
+import requests
+
+print("Probando acceso HTTP al BCCh...", flush=True)
+
+r = requests.get(
+    "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx",
+    timeout=30
+)
+
+print("Status BCCh:", r.status_code, flush=True)
+print("Content-Type:", r.headers.get("content-type"), flush=True)
+print("Respuesta inicial:", r.text[:300], flush=True)
+
 siete = bcchapi.Siete(user, pw)
 
 # Función para crear tablas agregadas
