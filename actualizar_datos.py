@@ -31,6 +31,8 @@ def series_bcentral(diccionario, frec='ME', var=0, desde=None, hasta=None, obser
 
     datos = {}
     for nombre, codigo in diccionario.items():
+        print(f'Descargando {nombre}: {codigo}', flush=True)
+      
         try:
             respuesta = siete.cuadro(
                 series=[codigo],
@@ -157,3 +159,7 @@ posnet_3 = posnet_nores_plazo[
 
 posnet_nores_plazo_mod = pd.concat([posnet_1, posnet_2, posnet_3])
 posnet_nores_plazo_mod.to_excel('datos.xlsx', index=True)
+
+print('datos.xlsx actualizado correctamente')
+print(f'Última fecha: {posnet_nores_plazo_mod.index.max()}')
+print(f'Filas generadas: {len(posnet_nores_plazo_mod):,}')
