@@ -13,15 +13,10 @@ pw = os.environ["BCCH_PASSWORD"]
 
 siete = bcchapi.Siete(user, pw)
 
-class NuevaClase(bcchapi.webservice.Session):
-    def ultimo_dato(self, serie:str) -> float:
-        """Devuelve último dato de una serie."""
-        respuesta = self.get(serie)
-        valores = respuesta.Series["Obs"]
-        ultimo = valores[-1]["value"]
-        return float(ultimo)
-
 # Función para crear tablas agregadas
+
+hasta = pd.Timestamp.today().strftime("%Y-%m-%d")
+desde = (pd.Timestamp.today() - pd.DateOffset(years=2)).strftime("%Y-%m-%d")
 
 def series_bcentral(diccionario, frec='ME', var=0, desde=None, hasta=None, observed='last'):
     """Descarga series desde el BCCh y devuelve DataFrame largo con columna Fecha (datetime)."""
@@ -142,7 +137,12 @@ series_posnet_nores_plazo = {
     '186-370 días': 'F099.DER.STO.Z.40.N.NR.NET.NDF.MMUSD.CLPUSD.C.P186370.0.D',
     'Más de 1 año': 'F099.DER.STO.Z.40.N.NR.NET.NDF.MMUSD.CLPUSD.C.MA01.0.D'
 }
-posnet_nores_plazo = series_bcentral(series_posnet_nores_plazo, frec='D').dropna()
+posnet_nores_plazo = series_bcentral(
+    series_posnet_nores_plazo,
+    frec='D',
+    desde=desde,
+    hasta=hasta
+).dropna()
 
 # Versión modificada
 posnet_1 = posnet_nores_plazo[
