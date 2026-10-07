@@ -52,14 +52,15 @@ ui <- fluidPage(
     title = paste(
       "Los valores sobre cero reflejan posiciones que se inclinan hacia un alza",
       "del precio del dólar en Chile, mientras que bajo cero apuntan a una caída.<br><br>",
-      "Los no residentes representan en Chile una parte significativa de las posiciones abiertas en forwards,",
-      "y suelen mostrar tendencias especulativas, además de cubrir riesgos de inversiones en activos chilenos."
+      "Los no residentes representan una parte significativa de los forwards",
+      "suscritos con bancos locales, y suelen mostrar tendencias especulativas,",
+      "además de cubrir riesgos de inversiones en activos chilenos."
     ),
     placement = "right",
     trigger = "click"
   ),
   
-  tags$p("Forwards de extranjeros con bancos locales."),
+  tags$p("Forwards de extranjeros en dólar-peso."),
   tags$p("Por: Benjamín Pescio", style = "font-size: 12px; margin: 1;"),
   
   absolutePanel(
