@@ -16,7 +16,7 @@ siete = bcchapi.Siete(user, pw)
 # Función para crear tablas agregadas
 
 hasta = pd.Timestamp.today().strftime("%Y-%m-%d")
-desde = (pd.Timestamp.today() - pd.DateOffset(years=2)).strftime("%Y-%m-%d")
+desde = (pd.Timestamp.today() - pd.DateOffset(years=10)).strftime("%Y-%m-%d")
 
 def series_bcentral(diccionario, frec='ME', var=0, desde=None, hasta=None, observed='last'):
     """Descarga series desde el BCCh y devuelve DataFrame largo con columna Fecha (datetime)."""
